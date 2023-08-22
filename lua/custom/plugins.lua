@@ -10,9 +10,12 @@ local plugins = {
     "williamboman/mason.nvim",
     opts = {
       ensure_installed = {
+        "pyright",
         "rust-analyzer",
+        "autopep8"
       },
     },
-  }
+  },
+
 }
 return plugins
