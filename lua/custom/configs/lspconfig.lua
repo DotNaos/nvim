@@ -1,14 +1,57 @@
 local on_attach = require("plugins.configs.lspconfig").on_attach
 local capabilities = require("plugins.configs.lspconfig").capabilities
 
-local lspconfig = require "lspconfig"
+local lspconfig = require("lspconfig")
+local util = require "lspconfig/util"
 
-lspconfig.rust_analyzer.setup(
-  {
+local servers = {"tsserver", "tailwindcss", "eslint"}
+
+for _, lsp in ipairs(servers) do
+  lspconfig[lsp].setup {
     on_attach = on_attach,
     capabilities = capabilities,
-    filetypes = {"rust"},
-    root_dir  = lspconfig.util.root_pattern("Cargo.toml"),
-
   }
-)
+end
+
+lspconfig.pylsp.setup{
+  on_attach = on_attach,
+  capabilities = capabilities,
+  filetypes = {"python"},
+  settings = {
+    pylsp = {
+      plugins = {
+        pycodestyle = {
+          ignore = {'W391'},
+          maxLineLength = 100
+        }
+      }
+    }
+  }
+}
+
+lspconfig.gopls.setup {
+  on_attach = on_attach,
+  capabilities = capabilities,
+  cmd = {"gopls"},
+  cmd_env = {
+    GOFLAGS = "-tags=test,e2e_test,integration_test,acceptance_test",
+  },
+  filetypes = { "go", "gomod", "gowork", "gotmpl" },
+  root_dir = util.root_pattern("go.work", "go.mod", ".git"),
+  settings = {
+    gopls = {
+      completeUnimported = true,
+      usePlaceholders = true,
+      analyses = {
+        unusedparams = true,
+      },
+    },
+  },
+}
+
+lspconfig.terraformls.setup {
+  on_attach = on_attach,
+  capabilities = capabilities,
+  cmd = {"terraform-ls", "serve"},
+  root_dir = util.root_pattern(".terraform", ".git"),
+}
