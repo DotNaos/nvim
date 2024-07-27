@@ -3,6 +3,8 @@
 -- Add any additional options here
 -- Configure nvterm to use the default options
 
+vim.opt.formatoptions:remove({ "c", "r", "o" }) -- Remove comment continuation
+
 if vim.fn.executable("pwsh") == 1 then
   vim.o.shell = "pwsh"
 else
