@@ -19,5 +19,5 @@ rm -rf ~/.local/share/nvim
 ```
 
 ```bash
-git clone https://github.com/NvChad/starter ~/.config/nvim && nvim
+git clone https://github.com/DotNaos/nvim ~/.config/nvim && nvim
 ```
