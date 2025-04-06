@@ -5,7 +5,10 @@
 
 vim.opt.formatoptions:remove({ "c", "r", "o" }) -- Remove comment continuation
 
-if vim.fn.executable("pwsh") == 1 then
+local os_name = vim.fn.system("uname"):gsub("\n", "")
+if os_name == "Darwin" or os_name == "Linux" then
+  vim.o.shell = "/bin/zsh" -- Change to your preferred shell if necessary
+elseif vim.fn.executable("pwsh") == 1 then
   vim.o.shell = "pwsh"
 else
   vim.o.shell = "powershell"
