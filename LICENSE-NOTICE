@@ -1,0 +1,13 @@
+Upstream: LazyVim/starter — https://github.com/LazyVim/starter
+License: Apache-2.0 (see LICENSE)
+
+This repository is derived from the LazyVim starter configuration. Its initial
+commit, 9e3627915abd9f519fa0503bf725b042d9cf27fb (2024-06-28,
+"Setup of Lazyvim"), includes the starter layout and example plugin configuration.
+At upstream revision 0c370f4d5c537e6d41dea31b547accc8d5f70a8a, LICENSE,
+init.lua, lua/config/lazy.lua and lua/plugins/example.lua match the versions in
+this repository at 676dc0b6e23effce50a5520304e2ed54285acdf3 byte for byte.
+
+Apache-2.0 is retained under DotNaos platform rule 6's exception for forks and
+derivatives, rather than replacing the upstream license with AGPL-3.0-or-later.
+DotNaos has customized the starter configuration; this notice documents its origin.
